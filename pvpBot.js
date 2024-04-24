@@ -7,12 +7,8 @@ function pvpBot(bot) {
   });
 
   bot.on("chat", (username, message) => {
-    if (username !== "nxrdsz") return;
-
     if (message === "fight") {
-      opponent = bot.nearestEntity(
-        (entity) => entity.type === "player" && entity.username === "H4xFLAME"
-      );
+      opponent = bot.players.bot2.entity;
     } else if (message === "stop") {
       opponent = null;
       bot.setControlState("forward", false);

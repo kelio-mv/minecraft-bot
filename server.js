@@ -1,26 +1,26 @@
 import { createBot } from "mineflayer";
 import { default as chatMessageLoader } from "prismarine-chat";
 import { Server } from "socket.io";
-import pvpBot from "./pvpBot.js";
-import pathfinderBot from "./pathfinder.js";
+import pvpBotV1 from "./pvp-bot-v1.js";
+import pvpBotV2 from "./pvp-bot-v2.js";
 
 const bot = createBot({
   host: "localhost",
-  port: 65316,
+  port: 54361,
   // auth: "microsoft",
-  username: "bot1",
+  username: "bot_v1",
   version: "1.8.9",
 });
 const bot2 = createBot({
   host: "localhost",
-  port: 65316,
+  port: 54361,
   // auth: "microsoft",
-  username: "bot2",
+  username: "bot_v2",
   version: "1.8.9",
 });
 
-pvpBot(bot);
-pathfinderBot(bot2);
+pvpBotV1(bot);
+pvpBotV2(bot2);
 
 // const ChatMessage = chatMessageLoader(bot.registry);
 // const io = new Server(3000, { serveClient: false });
@@ -52,8 +52,5 @@ pathfinderBot(bot2);
 //     }
 //   });
 // });
-
-// // pvpBot(bot);
-// pathfinderBot(bot);
 
 // console.log("[Bot] Connecting...");

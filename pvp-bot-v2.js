@@ -7,6 +7,9 @@ function pvpBotV2(bot) {
   let fight;
 
   function startFollowing() {
+    /* When using a range of 3, the bot somehow gets better at PvP, giving more knockback, getting
+    more hits and automatically doing s-tap. However the bot may stop moving prematurely, if its
+    opponent is in a different Y coordinate. */
     bot.pathfinder.setGoal(new goals.GoalFollow(opponent, reach));
   }
 

@@ -3,6 +3,10 @@ function pvpBotV1(bot) {
   let opponent;
   let fight;
 
+  bot.on("spawn", () => {
+    bot.setControlState("sprint", true);
+  });
+
   bot.on("entitySpawn", (entity) => {
     if (entity.username === "bot_v2") {
       opponent = entity;
@@ -23,7 +27,6 @@ function pvpBotV1(bot) {
 
     const distance = bot.entity.position.distanceTo(opponent.position);
     bot.lookAt(opponent.position.offset(0, opponent.height, 0), true);
-    bot.setControlState("sprint", true);
     bot.setControlState("forward", distance > reach);
 
     if (distance <= reach) {

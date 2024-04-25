@@ -32,8 +32,8 @@ function pvpBotV2(bot) {
   });
 
   bot.on("entitySpawn", (entity) => {
-    /* Save the target entity as soon as it spawns, and start following it, if it is supposed to
-    fight it */
+    /* Save the target entity as soon as it spawns, and start following it, if the bot is supposed
+    to fight it */
     if (entity.username === "bot_yt") {
       target = entity;
       if (fight) {
@@ -61,7 +61,7 @@ function pvpBotV2(bot) {
     if (!fight || !target) return;
     /* Manual sprint */
     bot.setControlState("sprint", true);
-    /* The calculation that determines if the player can hit another is based on hit boxes and
+    /* The calculation that determines if the player can hit another is based on hit boxes, so it's
     slightly different than player's actual distance. A legit player might hit around 3.3 and
     3.4 blocks of distance if we consider the real distance. However, prefer using 3 to make sure
     your hits are legit and avoid getting banned. */
@@ -82,3 +82,18 @@ function pvpBotV2(bot) {
 }
 
 export default pvpBotV2;
+
+/*
+  Try chat gpt code
+  See his tutorials
+  Note that that the youtuber's bot...
+  - importing goals with import statement
+  - is using dynamic goal
+  - sucessfully uses pathfind.stop()
+  - stops fighting when the targets dies, teleports, despawns or disconnects.
+
+  Try:
+  - GoalY(y)
+  - GoalLookAtBlock(pos, world, options = {})
+  - GoalPlaceBlock(pos, world, options)
+*/

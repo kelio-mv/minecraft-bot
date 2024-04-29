@@ -3,6 +3,7 @@ const { GoalFollow } = goals;
 
 function followerPlugin(bot) {
   class Follower {
+    pluginName = "follower";
     followLostTarget = false;
     range = 3;
 
@@ -13,13 +14,13 @@ function followerPlugin(bot) {
       bot.on("targetLost", this.handleTargetLost);
     }
 
-    setTarget = (username) => {
-      bot.target.set(username);
+    setTarget = (username, manager) => {
+      bot.target.set(username, manager || this.pluginName);
     };
 
-    clearTarget = () => {
+    clearTarget = (manager) => {
       // Don't use bot.pathfinder.stop(). It is really glitchy.
-      bot.target.clear();
+      bot.target.clear(manager || this.pluginName);
       bot.pathfinder.setGoal(null);
     };
 

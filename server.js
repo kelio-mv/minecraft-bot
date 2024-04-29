@@ -3,24 +3,13 @@ import { default as chatMessageLoader } from "prismarine-chat";
 import { Server } from "socket.io";
 import pvpBotV1 from "./pvp-bot-v1.js";
 import pvpBotV2 from "./pvp-bot-v2.js";
+import plugin from "./plugin.js";
 
 const bot = createBot({
-  host: "localhost",
-  port: 54361,
-  // auth: "microsoft",
-  username: "bot_v1",
-  version: "1.8.9",
-});
-const bot2 = createBot({
-  host: "localhost",
-  port: 54361,
-  // auth: "microsoft",
-  username: "bot_v2",
-  version: "1.8.9",
+  port: 51106,
 });
 
-pvpBotV1(bot);
-pvpBotV2(bot2);
+bot.loadPlugin(plugin);
 
 // const ChatMessage = chatMessageLoader(bot.registry);
 // const io = new Server(3000, { serveClient: false });

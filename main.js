@@ -1,16 +1,18 @@
 const { createBot } = require("mineflayer");
 const { pathfinder } = require("mineflayer-pathfinder");
-const follow = require("./follow");
+const target = require("./target");
+const follower = require("./follower");
 
-const bot = createBot({ port: 56137 });
+const bot = createBot({ port: 50988 });
 
-bot.loadPlugin(follow);
 bot.loadPlugin(pathfinder);
+bot.loadPlugin(target);
+bot.loadPlugin(follower);
 
 bot.on("chat", (username, message) => {
   if (message === "follow") {
-    bot.follow.setTarget(username);
+    bot.follower.setTarget(username);
   } else if (message === "stop") {
-    bot.follow.clearTarget();
+    bot.follower.clearTarget();
   }
 });

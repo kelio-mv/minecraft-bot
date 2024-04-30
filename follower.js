@@ -15,11 +15,26 @@ function followerPlugin(bot) {
     }
 
     setTarget = (username, manager) => {
-      bot.target.set(username, manager || this.pluginName);
+      if (manager) {
+        bot.target.set(username, manager);
+        return;
+      }
+      if (bot.target.manager && bot.target.manager !== this.pluginName) {
+        return;
+      }
+      bot.target.set(username, this.pluginName);
     };
 
     clearTarget = (manager) => {
       // Don't use bot.pathfinder.stop(). It is really glitchy.
+      if (manager) {
+        bot.target.clear(username, manager);
+        bot.pathfinder.setGoal(null);
+        return;
+      }
+      if (bot.target.manager && bot.target.manager !== this.pluginName) {
+        return;
+      }
       bot.target.clear(manager || this.pluginName);
       bot.pathfinder.setGoal(null);
     };

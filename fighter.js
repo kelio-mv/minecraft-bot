@@ -9,11 +9,17 @@ function fighterPlugin(bot) {
     }
 
     setTarget = (username) => {
+      if (bot.target.manager && bot.target.manager !== this.pluginName) {
+        return;
+      }
       bot.follower.setTarget(username, this.pluginName);
       this.fight = true;
     };
 
     clearTarget = () => {
+      if (bot.target.manager !== this.pluginName) {
+        return;
+      }
       bot.follower.clearTarget(this.pluginName);
       this.fight = false;
     };

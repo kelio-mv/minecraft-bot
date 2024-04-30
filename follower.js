@@ -17,12 +17,9 @@ function followerPlugin(bot) {
     setTarget = (username, manager) => {
       if (manager) {
         bot.target.set(username, manager);
-        return;
+      } else if (!bot.target.manager || bot.target.manager === this.pluginName) {
+        bot.target.set(username, this.pluginName);
       }
-      if (bot.target.manager && bot.target.manager !== this.pluginName) {
-        return;
-      }
-      bot.target.set(username, this.pluginName);
     };
 
     clearTarget = (manager) => {
@@ -30,13 +27,10 @@ function followerPlugin(bot) {
       if (manager) {
         bot.target.clear(username, manager);
         bot.pathfinder.setGoal(null);
-        return;
+      } else if (!bot.target.manager || bot.target.manager === this.pluginName) {
+        bot.target.clear(manager || this.pluginName);
+        bot.pathfinder.setGoal(null);
       }
-      if (bot.target.manager && bot.target.manager !== this.pluginName) {
-        return;
-      }
-      bot.target.clear(manager || this.pluginName);
-      bot.pathfinder.setGoal(null);
     };
 
     handleSpawn = () => {

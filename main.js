@@ -22,16 +22,18 @@ bot.on("message", (message) => {
   if (message === partyInvite) {
     bot.chat(partyAccept);
   } else if (message.startsWith(privatePrefix)) {
-    const content = message.substring(privatePrefix.length);
-    const [cmd, target] = content.split(" ");
+    const cmd = message.substring(privatePrefix.length);
 
     if (cmd === "follow") {
-      bot.follower.setTarget(target);
-    } else if (cmd === "stop_following") {
+      bot.follower.setTarget("nordsz");
+    } else if (cmd === "stop_follow") {
       bot.follower.clearTarget();
     } else if (cmd === "fight") {
-      bot.fighter.setTarget(target);
-    } else if (cmd === "stop_fighting") {
+      // const target = bot.nearestEntity(
+      //   (e) => e.type === "player" && ![bot.username, "nordsz"].includes(e.username)
+      // );
+      bot.fighter.setTarget("nordsz");
+    } else if (cmd === "stop_fight") {
       bot.fighter.clearTarget();
     }
   }
